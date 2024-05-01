@@ -51,7 +51,17 @@
   
   2. Card Service
    - Description
+      - This service manages credit card operations for authenticated users.
    - Endpoints/APIs
+      - `/api/cards/:id (GET)`: Retrieves all credit cards associated with the authenticated user by providing user ID as parameter.
+      - `/api/cards (POST)`: Adds a new credit card to the user's account. 
+          - Example JSON: 
+              - {
+              "number": "123456789",
+              "cardHolder": "Mario Angelov",
+              "expirationDate": "15.01.2024",
+              "userId": "6630deb47dd4f29525e018af"
+              }
    - Functionality
 
   3. Transaction Service
