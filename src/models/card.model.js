@@ -6,6 +6,7 @@ const cardSchema = new Schema({
   cardHolder: String,
   expirationDate: String,
   userId: { type: Schema.Types.ObjectId, ref: "User" },
+  encryptionIV: String,
 });
 
 export const CardModel = model("Card", cardSchema);
