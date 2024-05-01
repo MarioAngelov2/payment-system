@@ -1,13 +1,24 @@
 # Payment Service
 
 ## 1. Introduction
-- Brief overview of the payment software
+- Payment System software. It provides ability to create a user profile and authenticate it when log in.
+  Each authenticated user can add up to 5 credit cards. It includes deposit into user's account and also sending
+  to another account funds
   
 ## 2. System Overview
 - High-level description of the system architecture
-   - Payment System software. It provides ability to create a user profile and authenticate it when log in.
-    Each authenticated user can add up to 5 credit cards. It includes deposit into user's account and also sending
-    to another account funds.
+    1. Folder Architecture
+      - `src/`: Contains the source code of the application.
+      - `src/controllers/`: Handles incoming HTTP requests and responses.
+      - `src/models/`: Defines data models for interacting with the database.
+      - `src/routes/`: Defines the API routes.
+      - `src/services`: Implements business logic and interacts with models.
+      - `src/test/`: Contains test files.
+
+    2. Components Overview
+      - `register`, `login` - Responsible for user authentication.
+      - `createCard`, `getCards`, `deleteCard` - Handles credit card managment. 
+      - `deposit` - Manages financial transactions.
   
 - Technologies used (Node.js, npm packages, database)
    - `Node.js`: The runtime environment for executing JavaScript code server-side.
