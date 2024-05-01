@@ -37,7 +37,7 @@
 ## 3. Detailed Description
 
 ### 3.1 Software Components
-  1. Authentication Service
+  1. **Authentication Service**
    - Description
       - This service is responsible for handling user authentication.
    - Endpoints/APIs
@@ -49,7 +49,7 @@
       - User authentication: Verifies user credentials and issues a JWT token upon successful login.
       - Token management: Handles token expiration, refresh, and revocation for secure user sessions.
   
-  2. Card Service
+  2. **Card Service**
    - Description
       - This service manages credit card operations for authenticated users.
    - Endpoints/APIs
@@ -61,13 +61,13 @@
       - Card retrieval: Retrieves a list of all credit cards associated with the user.
       - Card deletion: Enables users to remove a credit card from their account.
 
-  3. Transaction Service
+  3. **Transaction Service**
    - Description
    - Endpoints/APIs
    - Functionality
 
 ### 3.2 Data Models and Storage
-  1. User Model
+  1. **User Model**
    - Description
       - Defines the structure of user data stored in the database.
    - Attributes
@@ -82,7 +82,7 @@
    - Relationships
       - None
       
-  2. Card Model
+  2. **Card Model**
    - Description
       - Represents credit card details associated with user accounts.
    - Attributes
@@ -92,7 +92,7 @@
    - Relationships
       - Belongs to a user (via user ID)
       
-  3. Deposit Model
+  3. **Deposit Model**
    - Description
       - Stores details of top-up deposits into user accounts.
    - Attributes
@@ -103,7 +103,7 @@
       - Belongs to a user (via user ID)
       - Associated with a credit card (via card ID)
     
-  4. Transaction Model
+  4. **Transaction Model**
    - Description
       - Records details of financial transactions between users.
    - Attributes
