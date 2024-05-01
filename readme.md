@@ -5,7 +5,16 @@
   
 ## 2. System Overview
 - High-level description of the system architecture
+  [
+    Payment System software. It provides ability to create a user profile and authenticate it when log in.
+    Each authenticated user can add up to 5 credit cards. It includes deposit into user's account and also sending
+    to another account funds.
+  ]
+
 - Technologies used (Node.js, npm packages, database)
+  [
+    
+  ]
 - Key functionalities (authentication, credit card management, transactions)
 - Diagram illustrating the system architecture (optional)
 
