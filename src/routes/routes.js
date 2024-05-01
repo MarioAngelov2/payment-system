@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { register } from "../controllers/register.js";
 import { login } from "../controllers/login.js";
-import { createCard } from "../controllers/card.js";
+import { createCard } from "../controllers/createCard.js";
 
 const router = Router();
 

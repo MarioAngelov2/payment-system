@@ -1,8 +1,7 @@
-import { createCardService } from "../services/card.js";
+import { createCardService } from "../services/createCard.js";
 
 export const createCard = async (req, res) => {
   try {
-    console.log(req.body)
     const { number, cardHolder, expirationDate, userId } = req.body;
 
     const newCard = await createCardService({
