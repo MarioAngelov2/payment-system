@@ -1,14 +1,13 @@
 import { CardModel } from '../models/card.model.js'
 
-export const getCardsService = async (data) => {
+export const getCardsService = async (id) => {
   try {
-    const { userId } = data;
 
-    if (!userId) {
+    if (!id) {
       throw new Error('User ID is required')
     }
 
-    const cards = await CardModel.find({ userId }).exec();
+    const cards = await CardModel.find({ id }).exec();
 
     return cards;
   } catch (error) {

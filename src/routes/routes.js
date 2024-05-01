@@ -10,7 +10,7 @@ const router = Router();
 router.post("/register", register);
 router.post("/login", login);
 router.post("/create-card", createCard);
-router.post("/get-cards", getCards);
+router.get("/get-cards/:id", getCards);
 router.delete("/delete-card/:id", deleteCard);
 
 export { router };
