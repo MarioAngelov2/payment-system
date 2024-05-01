@@ -7,7 +7,7 @@
   
 ## 2. System Overview
 - High-level description of the system architecture
-    1. Folder Architecture
+    - Folder Architecture
       - `src/`: Contains the source code of the application.
       - `src/controllers/`: Handles incoming HTTP requests and responses.
       - `src/models/`: Defines data models for interacting with the database.
@@ -15,7 +15,7 @@
       - `src/services`: Implements business logic and interacts with models.
       - `src/test/`: Contains test files.
 
-    2. Components Overview
+   - Components Overview
       - `register`, `login` - Responsible for user authentication.
       - `createCard`, `getCards`, `deleteCard` - Handles credit card managment. 
       - `deposit` - Manages financial transactions.
