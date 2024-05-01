@@ -39,8 +39,15 @@
 ### 3.1 Software Components
   1. Authentication Service
    - Description
+      - This service is responsible for handling user authentication.
    - Endpoints/APIs
+      - `/api/auth/register (POST)`: Creates a new user account.
+      - `/api/auth/login (POST)`: Authenticates a user and generates a JWT token.
+      - `/api/auth/logout (POST)`: Logs out a user and invalidates the JWT token.
    - Functionality
+      - User registration: Allows users to create a new account with their credentials.
+      - User authentication: Verifies user credentials and issues a JWT token upon successful login.
+      - Token management: Handles token expiration, refresh, and revocation for secure user sessions.
   
   2. Card Service
    - Description
