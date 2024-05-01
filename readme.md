@@ -55,14 +55,11 @@
    - Endpoints/APIs
       - `/api/cards/:id (GET)`: Retrieves all credit cards associated with the authenticated user by providing user ID as parameter.
       - `/api/cards (POST)`: Adds a new credit card to the user's account. 
-          - Example JSON: 
-              - {
-              "number": "123456789",
-              "cardHolder": "Mario Angelov",
-              "expirationDate": "15.01.2024",
-              "userId": "6630deb47dd4f29525e018af"
-              }
+      - `/api/cards/:id (DELETE)`: Deletes a credit card from the user's account.
    - Functionality
+      - Card creation: Allows users to add new credit cards to their account.
+      - Card retrieval: Retrieves a list of all credit cards associated with the user.
+      - Card deletion: Enables users to remove a credit card from their account.
 
   3. Transaction Service
    - Description
@@ -72,24 +69,51 @@
 ### 3.2 Data Models and Storage
   1. User Model
    - Description
+      - Defines the structure of user data stored in the database.
    - Attributes
+      - First name
+      - Last name
+      - Email 
+      - Password (encrypted)
+      - Address
+      - Phone Number
+      - Birth Date
+      - Balance (default 0)
    - Relationships
-
+      - None
+      
   2. Card Model
    - Description
+      - Represents credit card details associated with user accounts.
    - Attributes
+      - Number (masked)
+      - Cardholder name
+      - Expiration date
    - Relationships
-  
+      - Belongs to a user (via user ID)
+      
   3. Deposit Model
    - Description
+      - Stores details of top-up deposits into user accounts.
    - Attributes
+      - Amount
+      - Card ID (associated with the deposit)
+      - Date of deposit
    - Relationships
-
+      - Belongs to a user (via user ID)
+      - Associated with a credit card (via card ID)
+    
   4. Transaction Model
    - Description
+      - Records details of financial transactions between users.
    - Attributes
+      - Sender (user ID)
+      - Receiver (user ID) 
+      - Amount
+      - Date of transaction
    - Relationships
-
+      - None
+      
 ## 4. Security
   - Authentication (JWT implementation)
   - Data Encryption (encryption of sensitive data)
