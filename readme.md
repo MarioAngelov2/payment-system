@@ -5,17 +5,14 @@
   
 ## 2. System Overview
 - High-level description of the system architecture
-  [
-    Payment System software. It provides ability to create a user profile and authenticate it when log in.
+   - Payment System software. It provides ability to create a user profile and authenticate it when log in.
     Each authenticated user can add up to 5 credit cards. It includes deposit into user's account and also sending
     to another account funds.
-  ]
-
+  
 - Technologies used (Node.js, npm packages, database)
-  [
-    
-  ]
-- Key functionalities (authentication, credit card management, transactions)
+   - `Node.js`: The runtime environment for executing JavaScript code server-side.
+   - `Express.js`: A web application framework for Node.js, used for building APIs and handling HTTP requests.
+
 - Diagram illustrating the system architecture (optional)
 
 ## 3. Detailed Description
