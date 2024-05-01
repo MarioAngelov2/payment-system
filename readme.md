@@ -117,7 +117,7 @@
       - Amount
       - Date of transaction
    - Relationships
-      - None
+      - Associated with user (via user ID)
       
 ## 4. Security
   - Authentication (JWT implementation)
