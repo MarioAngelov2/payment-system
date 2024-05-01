@@ -6,15 +6,17 @@ import { getCards } from "../controllers/getCards.js";
 import { deleteCard } from "../controllers/deleteCard.js";
 import { deposit } from "../controllers/deposit.js";
 import { transaction } from "../controllers/transaction.js";
+import { getTransactions } from "../controllers/getTransactions.js";
 
 const router = Router();
 
-router.post("/register", register);
-router.post("/login", login);
-router.post("/create-card", createCard);
-router.get("/get-cards/:id", getCards);
-router.delete("/delete-card/:id", deleteCard);
-router.post("/deposit", deposit);
-router.post("/transaction", transaction);
+router.post("/auth/register", register);
+router.post("/auth/login", login);
+router.post("/cards/create-card", createCard);
+router.get("/cards/get-cards/:id", getCards);
+router.delete("/cards/delete-card/:id", deleteCard);
+router.post("/transaction/deposit", deposit);
+router.post("/transaction/transfer", transaction);
+router.get("/transaction/get-transactions/:userId", getTransactions);
 
 export { router };
