@@ -41,9 +41,8 @@
    - Description
       - This service is responsible for handling user authentication.
    - Endpoints/APIs
-      - `/api/auth/register (POST)`: Creates a new user account.
-      - `/api/auth/login (POST)`: Authenticates a user and generates a JWT token.
-      - `/api/auth/logout (POST)`: Logs out a user and invalidates the JWT token.
+      - `/auth/register (POST)`: Creates a new user account.
+      - `/auth/login (POST)`: Authenticates a user and generates a JWT token.
    - Functionality
       - User registration: Allows users to create a new account with their credentials.
       - User authentication: Verifies user credentials and issues a JWT token upon successful login.
@@ -53,9 +52,9 @@
    - Description
       - This service manages credit card operations for authenticated users.
    - Endpoints/APIs
-      - `/api/cards/:id (GET)`: Retrieves all credit cards associated with the authenticated user by providing user ID as parameter.
-      - `/api/cards (POST)`: Adds a new credit card to the user's account. 
-      - `/api/cards/:id (DELETE)`: Deletes a credit card from the user's account.
+      - `/cards/get-cards/:id (GET)`: Retrieves all credit cards associated with the authenticated user by providing user ID as parameter.
+      - `/cards/create-card (POST)`: Adds a new credit card to the user's account. 
+      - `/cards/delete-card/:id (DELETE)`: Deletes a credit card from the user's account.
    - Functionality
       - Card creation: Allows users to add new credit cards to their account.
       - Card retrieval: Retrieves a list of all credit cards associated with the user.
@@ -63,8 +62,13 @@
 
   3. **Transaction Service**
    - Description
+      - This service manages transactions between users. 
    - Endpoints/APIs
+      - `/transaction/transfer (POST)`: Creates a transaction from one to another user. 
+      - `/transaction/get-transactions/:userId (GET)`: Gets all transactions per user. 
    - Functionality
+      - Transfer funds: Allow the user to transfer funds to another user's account.
+      - List all transactions: Retrieves a list of all transactions per user.
 
 ### 3.2 Data Models and Storage
   1. **User Model**
