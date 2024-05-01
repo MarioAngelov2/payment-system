@@ -20,7 +20,7 @@ const userSchema = new Schema({
     required: true,
   },
   address: String,
-  phoneNumber: String,
+  phoneNumber: Number,
   birthDate: Date,
   balance: {
     type: Number,

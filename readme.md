@@ -95,6 +95,7 @@
   3. **Deposit Model**
    - Description
       - Stores details of top-up deposits into user accounts.
+      - Update user's balance.
    - Attributes
       - Amount
       - Card ID (associated with the deposit)

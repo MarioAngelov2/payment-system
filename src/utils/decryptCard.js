@@ -5,10 +5,6 @@ dotenv.config();
 const key = Buffer.from(process.env.ENCRYPTION_SECRET_KEY, "hex");
 
 export const decryptCard = async (cardEncryptionIV, cardNumber) => {
-
-  console.log("cardEncryptionIV", cardEncryptionIV);
-  console.log("cardNumber", cardNumber);
-
   const decipher = crypto.createDecipheriv(
     "aes-256-cbc",
     Buffer.from(key),

@@ -3,7 +3,7 @@ import { encryptCard } from "../utils/encryptCard.js";
 
 export const createCardService = async (cardData) => {
   try {
-    const { number, cardHolder, expirationDate, userId } = cardData;
+    const { cardNumber, cardHolder, expirationDate, userId } = cardData;
 
     const userCards = await CardModel.find({ userId }).exec();
 
@@ -11,7 +11,7 @@ export const createCardService = async (cardData) => {
       throw new Error("User can have only 5 cards");
     }
 
-    const { encryptedData, iv } = encryptCard(number);
+    const { encryptedData, iv } = encryptCard(cardNumber);
 
     const newCard = new CardModel({
       number: encryptedData,
