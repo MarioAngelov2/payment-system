@@ -1,4 +1,5 @@
 import { registerService } from "../services/register.js";
+import { UserModel } from "../models/user.model.js";
 
 export const register = async (req, res) => {
   try {
@@ -12,6 +13,12 @@ export const register = async (req, res) => {
       birthDate,
       balance,
     } = req.body;
+
+    const user = await UserModel.findOne({ email }).exec();
+
+    if (user) {
+      return res.status(400).json({ message: "User already exists" });
+    }
 
     const result = await registerService({
       firstName,
