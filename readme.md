@@ -12,6 +12,14 @@
 - Technologies used (Node.js, npm packages, database)
    - `Node.js`: The runtime environment for executing JavaScript code server-side.
    - `Express.js`: A web application framework for Node.js, used for building APIs and handling HTTP requests.
+   - `MongoDB`: A NoSQL database used for storing data.
+   - `bcrypt`: A library for hashing passwords securely.
+   - `jsonwebtoken`: Used for generating and verifying JSON Web Tokens (JWT) for user authentication.
+   - `dotenv`: Used for loading environment variables from a .env file into process.env.
+   - `chai and chai-http`: Assertion libraries for writing tests, with chai-http specifically for testing HTTP APIs.
+   - `sinon`: A library for mocking, stubbing, and spying on JavaScript functions during testing.
+   - `mocha`: A feature-rich JavaScript test framework running on Node.js, for running unit tests.
+   - `nodemon`: A utility that monitors changes in your source code and automatically restarts the server.
 
 - Diagram illustrating the system architecture (optional)
 
