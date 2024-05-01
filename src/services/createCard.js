@@ -1,7 +1,10 @@
+import dotenv from "dotenv";
 import { CardModel } from "../models/card.model.js";
 import crypto, { createCipheriv } from "crypto";
 
-const key = crypto.randomBytes(32);
+dotenv.config();
+
+const key = Buffer.from(process.env.ENCRYPTION_SECRET_KEY, "hex");
 const iv = crypto.randomBytes(16);
 
 const encryptCard = (number) => {
