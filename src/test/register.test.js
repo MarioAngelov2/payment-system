@@ -1,26 +1,39 @@
-// import { expect } from "chai";
-// import { registerService } from "../services/register.js";
-// import * as sinon from "sinon";
+import { registerService } from "../services/register.js";
+import { UserModel } from "../models/user.model.js";
+import sinon from "sinon";
+import { expect } from "chai";
 
-// describe("Register Test", () => {
-//   it("should return a new user", async () => {
-//     const user = {
-//       firstName: "test",
-//       lastName: "test",
-//       email: "test@abv.bg",
-//       password: "test",
-//       address: "test",
-//       phoneNumber: 8222222,
-//       birthDate: new Date("1999-01-01"),
-//       balance: 0,
-//     };
+describe("User service", () => {
+  describe("Register service", () => {
+    it("should register new user", (done) => {
+      const userData = {
+        firstName: "John",
+        lastName: "Doe",
+        email: "john@abv.bg",
+        password: "123",
+        address: "Sofia",
+        phoneNumber: "0888888888",
+        birthDate: "01.01.1999",
+        balance: 0,
+      };
+      const saveStub = sinon.stub().resolves(userData);
+      const newUser = { save: saveStub };
 
-//     const save = sinon.stub(registerService(user), "then").resolves(user);
+      const userModelStub = sinon.stub(UserModel, "create").returns(newUser);
 
-//     const result = await registerService(user);
+      registerService(userData)
+        .then((result) => {
+          expect(result).to.deep.equal(userData);
 
-//     expect(result).to.deep.equal(user);
+          sinon.assert.calledOnce(userModelStub);
+          sinon.assert.calledOnce(saveStub);
 
-//     save.restore();
-//   });
-// });
+          userModelStub.restore();
+          done();
+        })
+        .catch((err) => {
+          done(err);
+        });
+    });
+  });
+});
