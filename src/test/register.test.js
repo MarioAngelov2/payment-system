@@ -1,39 +1,56 @@
-import { registerService } from "../services/register.js";
-import { UserModel } from "../models/user.model.js";
-import sinon from "sinon";
 import { expect } from "chai";
+import sinon from "sinon";
+import { UserModel } from "../models/user.model.js";
+import bcrypt from "bcrypt";
+import { registerService } from "../services/register.js";
 
-describe("User service", () => {
-  describe("Register service", () => {
-    it("should register new user", (done) => {
-      const userData = {
-        firstName: "John",
-        lastName: "Doe",
-        email: "john@abv.bg",
-        password: "123",
-        address: "Sofia",
-        phoneNumber: "0888888888",
-        birthDate: "01.01.1999",
-        balance: 0,
-      };
-      const saveStub = sinon.stub().resolves(userData);
-      const newUser = { save: saveStub };
+describe("Register Service", () => {
+  let saveStub, hashStub, sampleUser;
 
-      const userModelStub = sinon.stub(UserModel, "create").returns(newUser);
+  beforeEach(() => {
+    sampleUser = {
+      firstName: "John",
+      lastName: "Doe",
+      email: "john.doe@example.com",
+      password: "password123",
+      address: "123 Main St",
+      phoneNumber: 8888888,
+      birthDate: new Date(),
+      balance: 1000,
+    };
 
-      registerService(userData)
-        .then((result) => {
-          expect(result).to.deep.equal(userData);
+    saveStub = sinon.stub(UserModel.prototype, "save");
+    hashStub = sinon.stub(bcrypt, "hash");
+  });
 
-          sinon.assert.calledOnce(userModelStub);
-          sinon.assert.calledOnce(saveStub);
+  afterEach(() => {
+    saveStub.restore();
+    hashStub.restore();
+  });
 
-          userModelStub.restore();
-          done();
-        })
-        .catch((err) => {
-          done(err);
-        });
-    });
+  it("should register user", async () => {
+    hashStub.resolves("hashedpassword123");
+    saveStub.resolves(sampleUser);
+
+    const user = await registerService(sampleUser);
+
+    expect(user).to.deep.equal(sampleUser);
+    sinon.assert.calledOnceWithExactly(hashStub, sampleUser.password, 10);
+    sinon.assert.calledOnce(saveStub);
+  });
+
+  it("should throw an error when there is a database update error", async () => {
+    hashStub.resolves("hashedpassword123");
+    saveStub.throws(new Error("Database update error"));
+
+    try {
+      await registerService(sampleUser);
+    } catch (error) {
+      expect(error).to.be.an("error");
+      expect(error.message).to.equal("Database update error");
+    }
+
+    sinon.assert.calledOnceWithExactly(hashStub, sampleUser.password, 10);
+    sinon.assert.calledOnce(saveStub);
   });
 });
