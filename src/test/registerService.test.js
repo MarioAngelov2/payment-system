@@ -2,7 +2,7 @@ import { expect } from "chai";
 import sinon from "sinon";
 import { UserModel } from "../models/user.model.js";
 import bcrypt from "bcrypt";
-import { registerService } from "../services/register.js";
+import { registerService } from "../services/authService.js"
 
 describe("Register Service", () => {
   let saveStub, hashStub, sampleUser;
