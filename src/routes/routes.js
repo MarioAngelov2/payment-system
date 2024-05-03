@@ -10,6 +10,10 @@ import { deposit } from "../controllers/deposit.js";
 import { transaction } from "../controllers/transaction.js";
 import { getTransactions } from "../controllers/getTransactions.js";
 import { jwtMiddleware } from "../middleware/jwtMiddleware.js";
+import {
+  registerValidation,
+  registerValidationMiddleware,
+} from "../middleware/registerValidation.js";
 
 const router = Router();
 
@@ -281,7 +285,11 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  *                      type: string
  */
 
-router.post("/auth/register", register);
+router.post(
+  "/auth/register",
+  registerValidationMiddleware(registerValidation),
+  register
+);
 router.post("/auth/login", login);
 router.post("/cards/create-card", jwtMiddleware, createCard);
 router.get("/cards/get-cards/:id", getCards);
