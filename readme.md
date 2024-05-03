@@ -14,12 +14,14 @@
       - `src/routes/`: Defines the API routes.
       - `src/services`: Implements business logic and interacts with models.
       - `src/utils/`: Contains helper functions which might be used multiple times.
+      - `src/middleware`: Containes middleware functions for verification or error handling.
       - `src/test/`: Contains test files.
 
    - Components Overview
       - `register`, `login` - Responsible for user authentication.
       - `createCard`, `getCards`, `deleteCard` - Handles credit card managment. 
-      - `deposit` - Manages financial transactions.
+      - `deposit` - Manages financial deposit into user's account.
+      - `transaction`, `getTransactions` - Manages transactions between user's accounts and retreives all transactions per user.
   
 - Technologies used (Node.js, npm packages, database)
    - `Node.js`: The runtime environment for executing JavaScript code server-side.

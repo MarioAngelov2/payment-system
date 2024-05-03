@@ -4,6 +4,10 @@ import { encryptCard } from "../utils/encryptCard.js";
 export const createCardService = async (cardData) => {
   try {
     const { cardNumber, cardHolder, expirationDate, userId } = cardData;
+
+    if (cardNumber.length !== 9) {
+      throw new Error("Card number should be 9 digits long");
+    }
  
     const userCards = await CardModel.find({ userId }).exec();
 

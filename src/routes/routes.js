@@ -30,7 +30,7 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  * @swagger
  * securityDefinitions:
  *   BearerAuth:
- *     type: apiKey
+ *     type: JWT Bearer
  *     name: Authorization
  *     in: header
  */
