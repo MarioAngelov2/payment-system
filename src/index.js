@@ -1,4 +1,4 @@
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 import express from "express";
 import bodyParser from "body-parser";
 import http from "http";
@@ -10,14 +10,14 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-  mongoose
-    .connect(process.env.MONGO_URL)
-    .then(() => {
-      console.log("Connected to database");
-    })
-    .catch(() => {
-      console.log("Connection failed");
-    });
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() => {
+    console.log("Connected to database");
+  })
+  .catch(() => {
+    console.log("Connection failed");
+  });
 
 app.use(bodyParser.json());
 app.use("/", router);

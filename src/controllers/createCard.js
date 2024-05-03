@@ -2,10 +2,10 @@ import { createCardService } from "../services/createCard.js";
 
 export const createCard = async (req, res) => {
   try {
-    const { number, cardHolder, expirationDate, userId } = req.body;
-
+    const { cardNumber, cardHolder, expirationDate, userId } = req.body;
+   
     const newCard = await createCardService({
-      number,
+      cardNumber,
       cardHolder,
       expirationDate,
       userId,

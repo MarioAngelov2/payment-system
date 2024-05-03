@@ -18,7 +18,7 @@ export const transactionService = async (
       throw new Error("Card not found.");
     }
 
-    const isValidCard = await decryptCard(card.encryptionIV, card.number);
+    const isValidCard = await decryptCard(card.encryptionIV, card.cardNumber);
 
     if (isValidCard !== cardNumber) {
       throw new Error("Invalid card number");

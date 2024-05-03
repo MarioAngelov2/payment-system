@@ -3,9 +3,9 @@ import { CardModel } from "../models/card.model.js";
 import { UserModel } from "../models/user.model.js";
 import { decryptCard } from "../utils/decryptCard.js";
 
-export const depositService = async (id, amount, cardNumber) => {
+export const depositService = async (cardId, amount, cardNumber) => {
   try {
-    const card = await CardModel.findOne({ _id: id });
+    const card = await CardModel.findOne({ _id: cardId });
 
     if (!card) {
       throw new Error("Card not found.");
@@ -13,14 +13,15 @@ export const depositService = async (id, amount, cardNumber) => {
 
     const decryptedCardNumber = await decryptCard(
       card.encryptionIV,
-      card.number
+      card.cardNumber
     );
 
     if (decryptedCardNumber !== cardNumber) {
       console.log("Invalid card number");
+      throw new Error("Invalid card number.");
     } else {
       const deposit = new DepositModel({
-        cardId: id,
+        cardId,
         amount,
       });
 

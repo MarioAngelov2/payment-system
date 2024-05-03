@@ -13,6 +13,7 @@
       - `src/models/`: Defines data models for interacting with the database.
       - `src/routes/`: Defines the API routes.
       - `src/services`: Implements business logic and interacts with models.
+      - `src/utils/`: Contains helper functions which might be used multiple times.
       - `src/test/`: Contains test files.
 
    - Components Overview
@@ -32,11 +33,18 @@
    - `mocha`: A feature-rich JavaScript test framework running on Node.js, for running unit tests.
    - `nodemon`: A utility that monitors changes in your source code and automatically restarts the server.
 
-- Diagram illustrating the system architecture (optional)
-
 ## 3. Detailed Description
 
-### 3.1 Software Components
+### 3.1 API Documentation
+  1. **Swagger Documentation**
+      - Description
+         - The API documentation for this system is available through Swagger.
+      - Access
+         - Copy GitHub repo, open `src` folder in terminal, write `npm start`, access the documentation on the following URL `http://localhost:5006/api-docs/`
+      - Functionality
+         - Provides detailed information about each API endpoint, including request parameters, response formats, and example requests/responses.
+
+### 3.2 Software Components
   1. **Authentication Service**
    - Description
       - This service is responsible for handling user authentication.

@@ -4,7 +4,7 @@ import { encryptCard } from "../utils/encryptCard.js";
 export const createCardService = async (cardData) => {
   try {
     const { cardNumber, cardHolder, expirationDate, userId } = cardData;
-
+ 
     const userCards = await CardModel.find({ userId }).exec();
 
     if (userCards.length >= 5) {
@@ -14,7 +14,7 @@ export const createCardService = async (cardData) => {
     const { encryptedData, iv } = encryptCard(cardNumber);
 
     const newCard = new CardModel({
-      number: encryptedData,
+      cardNumber: encryptedData,
       cardHolder,
       expirationDate,
       userId,

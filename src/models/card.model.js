@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const { Schema, model } = mongoose;
 
 const cardSchema = new Schema({
-  number: String,
+  cardNumber: String,
   cardHolder: String,
   expirationDate: String,
   userId: { type: Schema.Types.ObjectId, ref: "User" },
