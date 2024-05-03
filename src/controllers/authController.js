@@ -1,5 +1,5 @@
-import { registerService } from "../services/register.js";
 import { UserModel } from "../models/user.model.js";
+import {registerService, loginService} from '../services/authService.js'
 
 export const register = async (req, res) => {
   try {
@@ -32,6 +32,18 @@ export const register = async (req, res) => {
     });
 
     res.status(201).json(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const login = async (req, res) => {
+  try {
+    const data = req.body;
+
+    const token = await loginService(data);
+
+    res.status(200).json({ token });
   } catch (error) {
     console.log(error);
   }

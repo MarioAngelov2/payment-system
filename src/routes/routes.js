@@ -1,14 +1,17 @@
 import swaggerUi from "swagger-ui-express";
 import swaggerJsDoc from "swagger-jsdoc";
 import { Router } from "express";
-import { register } from "../controllers/register.js";
-import { login } from "../controllers/login.js";
-import { createCard } from "../controllers/createCard.js";
-import { getCards } from "../controllers/getCards.js";
-import { deleteCard } from "../controllers/deleteCard.js";
-import { deposit } from "../controllers/deposit.js";
-import { transaction } from "../controllers/transaction.js";
-import { getTransactions } from "../controllers/getTransactions.js";
+import { register, login } from "../controllers/authController.js";
+import {
+  createCard,
+  deleteCard,
+  getCards,
+} from "../controllers/cardsController.js";
+import {
+  getTransactions,
+  deposit,
+  transaction,
+} from "../controllers/transactionsController.js";
 import { jwtMiddleware } from "../middleware/jwtMiddleware.js";
 import {
   registerValidation,
