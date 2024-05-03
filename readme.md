@@ -73,7 +73,7 @@
       - This service manages transactions between users. 
    - Endpoints/APIs
       - `/transaction/transfer (POST)`: Creates a transaction from one to another user. 
-      - `/transaction/get-transactions/:userId (GET)`: Gets all transactions per user. 
+      - `/transaction/get-transactions/:userId (GET)`: Gets all transactions per user by providing user ID as parameter.
    - Functionality
       - Transfer funds: Allow the user to transfer funds to another user's account.
       - List all transactions: Retrieves a list of all transactions per user.
