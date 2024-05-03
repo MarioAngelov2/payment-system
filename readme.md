@@ -12,7 +12,7 @@
       - `src/routes/`: Defines the API routes.
       - `src/services`: Implements business logic and interacts with models.
       - `src/utils/`: Contains helper functions which might be used multiple times.
-      - `src/middleware`: Containes middleware functions for verification or error handling.
+      - `src/middleware`: Containes middleware functions for verification and error handling.
       - `src/test/`: Contains test files.
 
    - Components Overview
