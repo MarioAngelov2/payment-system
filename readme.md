@@ -1,9 +1,7 @@
 # Payment Service
 
 ## 1. Introduction
-- Payment System software. It provides ability to create a user profile and authenticate it when log in.
-  Each authenticated user can add up to 5 credit cards. It includes deposit into user's account and also sending
-  to another account funds
+- Payment System software. It allows users to set up a profile and verify their identity during login. Each verified user can link up to 5 credit cards to their profile. The system facilitates depositing funds into a user's account and transferring funds to another account
   
 ## 2. System Overview
 - High-level description of the system architecture
