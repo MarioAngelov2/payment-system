@@ -1,5 +1,5 @@
 import { UserModel } from "../models/user.model.js";
-import { registerValidation } from "../middleware/registerValidation.js";
+import { registerValidation, loginValidation } from "../middleware/authValidation.js";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
@@ -52,6 +52,11 @@ export const registerService = async (data) => {
 export const loginService = async (data) => {
   try {
     const { email, password } = data;
+
+    const { error } = loginValidation.validate(data);
+    if (error) {
+      throw new Error(error.details[0].message);
+    }
 
     const user = await UserModel.findOne({ email }).exec();
 

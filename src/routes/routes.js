@@ -15,8 +15,21 @@ import {
 import { jwtMiddleware } from "../middleware/jwtMiddleware.js";
 import {
   registerValidation,
-  registerValidationMiddleware,
-} from "../middleware/registerValidation.js";
+  authValidationMiddleware,
+  loginValidation,
+} from "../middleware/authValidation.js";
+import {
+  deleteCardValidation,
+  getCardsValidation,
+  createCardValidation,
+  cardValidationMiddleware,
+} from "../middleware/cardValidation.js";
+import {
+  transactionValidationMiddleware,
+  transferValidation,
+  getTransactionsValidation,
+  depositValidation,
+} from "../middleware/transactionValidation.js";
 
 const router = Router();
 
@@ -290,15 +303,40 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 router.post(
   "/auth/register",
-  registerValidationMiddleware(registerValidation),
+  authValidationMiddleware(registerValidation),
   register
 );
-router.post("/auth/login", login);
-router.post("/cards/create-card", jwtMiddleware, createCard);
-router.get("/cards/get-cards/:id", getCards);
-router.delete("/cards/delete-card/:id", deleteCard);
-router.post("/transaction/deposit", deposit);
-router.post("/transaction/transfer", transaction);
-router.get("/transaction/get-transactions/:userId", getTransactions);
+router.post("/auth/login", authValidationMiddleware(loginValidation), login);
+router.post(
+  "/cards/create-card",
+  cardValidationMiddleware(createCardValidation),
+  jwtMiddleware,
+  createCard
+);
+router.get(
+  "/cards/get-cards/:id",
+  cardValidationMiddleware(getCardsValidation),
+  getCards
+);
+router.delete(
+  "/cards/delete-card/:id",
+  cardValidationMiddleware(deleteCardValidation),
+  deleteCard
+);
+router.post(
+  "/transaction/deposit",
+  transactionValidationMiddleware(depositValidation),
+  deposit
+);
+router.post(
+  "/transaction/transfer",
+  transactionValidationMiddleware(transferValidation),
+  transaction
+);
+router.get(
+  "/transaction/get-transactions/:userId",
+  transactionValidationMiddleware(getTransactionsValidation),
+  getTransactions
+);
 
 export { router };

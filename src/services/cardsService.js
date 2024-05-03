@@ -1,14 +1,24 @@
 import { CardModel } from "../models/card.model.js";
 import { encryptCard } from "../utils/encryptCard.js";
+import {
+  createCardValidation,
+  deleteCardValidation,
+  getCardsValidation,
+} from "../middleware/cardValidation.js";
 
 export const createCardService = async (cardData) => {
   try {
     const { cardNumber, cardHolder, expirationDate, userId } = cardData;
 
+    const { error } = createCardValidation.validate(cardData);
+    if (error) {
+      throw new Error(error.details[0].message);
+    }
+
     if (cardNumber.length !== 9) {
       throw new Error("Card number should be 9 digits long");
     }
- 
+
     const userCards = await CardModel.find({ userId }).exec();
 
     if (userCards.length >= 5) {
@@ -36,9 +46,9 @@ export const createCardService = async (cardData) => {
 
 export const deleteCardService = async (id) => {
   try {
-
-    if (!id) {
-      throw new Error("Card ID is required");
+    const { error } = deleteCardValidation.validate(id);
+    if (error) {
+      throw new Error(error.details[0].message);
     }
 
     await CardModel.findByIdAndDelete(id).exec();
@@ -52,14 +62,12 @@ export const deleteCardService = async (id) => {
 
 export const getCardsService = async (id) => {
   try {
-    if (!id) {
-      throw new Error("User ID is required");
+    const { error } = getCardsValidation.validate(id);
+    if (error) {
+      throw new Error(error.details[0].message);
     }
 
-    const cards = await CardModel.find({})
-      .where("userId")
-      .equals(id)
-      .exec();
+    const cards = await CardModel.find({}).where("userId").equals(id).exec();
 
     return cards;
   } catch (error) {
