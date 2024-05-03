@@ -16,7 +16,6 @@ export const jwtMiddleware = async (req, res, next) => {
 
     const decoded = jwt.verify(token, secret);
 
-    console.log(decoded);
     const user = await UserModel.findOne({ email: decoded.email });
 
     if (!user) {

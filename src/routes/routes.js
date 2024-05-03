@@ -28,6 +28,15 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 /**
  * @swagger
+ * securityDefinitions:
+ *   BearerAuth:
+ *     type: apiKey
+ *     name: Authorization
+ *     in: header
+ */
+
+/**
+ * @swagger
  * /auth/register:
  *   post:
  *     description: Register new user
@@ -96,6 +105,8 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  * @swagger
  * /cards/create-card:
  *   post:
+ *     security:
+ *      - BearerAuth: []
  *     description: Create new card
  *     parameters:
  *       - in: body
@@ -273,7 +284,7 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 router.post("/auth/register", register);
 router.post("/auth/login", login);
 router.post("/cards/create-card", jwtMiddleware, createCard);
-router.get("/cards/get-cards/:id", jwtMiddleware, getCards);
+router.get("/cards/get-cards/:id", getCards);
 router.delete("/cards/delete-card/:id", deleteCard);
 router.post("/transaction/deposit", deposit);
 router.post("/transaction/transfer", transaction);
