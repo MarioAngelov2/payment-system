@@ -9,6 +9,7 @@ import { deleteCard } from "../controllers/deleteCard.js";
 import { deposit } from "../controllers/deposit.js";
 import { transaction } from "../controllers/transaction.js";
 import { getTransactions } from "../controllers/getTransactions.js";
+import { jwtMiddleware } from "../middleware/jwtMiddleware.js";
 
 const router = Router();
 
@@ -224,7 +225,7 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  *               type: number
  *             cardNumber:
  *               type: string
- *             cardId: 
+ *             cardId:
  *               type: string
  *     responses:
  *       201:
@@ -271,8 +272,8 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 router.post("/auth/register", register);
 router.post("/auth/login", login);
-router.post("/cards/create-card", createCard);
-router.get("/cards/get-cards/:id", getCards);
+router.post("/cards/create-card", jwtMiddleware, createCard);
+router.get("/cards/get-cards/:id", jwtMiddleware, getCards);
 router.delete("/cards/delete-card/:id", deleteCard);
 router.post("/transaction/deposit", deposit);
 router.post("/transaction/transfer", transaction);
