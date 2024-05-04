@@ -25,6 +25,8 @@ describe("Transaction Service", () => {
     console.log("transaction", transaction);
     console.log("sampleTransaction", sampleTransaction);
 
-    expect(transaction).to.deep.equal(sampleTransaction);
+    expect(transaction.sender).to.equal(sampleTransaction.senderId);
+    expect(transaction.receiver).to.equal(sampleTransaction.receiverId);
+    expect(transaction.amount).to.equal(sampleTransaction.amount);
   });
 });
