@@ -27,10 +27,13 @@
    - `bcrypt`: A library for hashing passwords securely.
    - `jsonwebtoken`: Used for generating and verifying JSON Web Tokens (JWT) for user authentication.
    - `dotenv`: Used for loading environment variables from a .env file into process.env.
-   - `chai and chai-http`: Assertion libraries for writing tests, with chai-http specifically for testing HTTP APIs.
+   - `chai`: Assertion libraries for writing tests.
    - `sinon`: A library for mocking, stubbing, and spying on JavaScript functions during testing.
    - `mocha`: A feature-rich JavaScript test framework running on Node.js, for running unit tests.
    - `nodemon`: A utility that monitors changes in your source code and automatically restarts the server.
+   - `date-fns`: A library that helps with converting date.
+   - `joi`: A library for easy code validation.
+   - `swagger`: A powerful framework that helps developers test RESTful APIs easily.
 
 ## 3. Detailed Description
 
