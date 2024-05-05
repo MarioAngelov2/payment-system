@@ -50,7 +50,7 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  * @swagger
  * securityDefinitions:
  *   BearerAuth:
- *     type: JWT Bearer
+ *     type: apiKey
  *     name: Authorization
  *     in: header
  */
@@ -158,6 +158,8 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  * @swagger
  * /cards/get-cards/{id}:
  *   get:
+ *     security:
+ *      - BearerAuth: []
  *     description: List all cards of a user
  *     parameters:
  *       - in: path
@@ -193,6 +195,8 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  * @swagger
  * /cards/delete-card/{id}:
  *   delete:
+ *    security:
+ *     BearerAuth: []
  *     description: Deletes a card
  *     parameters:
  *       - in: path
@@ -210,6 +214,8 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  * @swagger
  * /transaction/deposit:
  *   post:
+ *    security:
+ *     BearerAuth: []
  *     description: Deposit funds to user account
  *     parameters:
  *       - in: body
@@ -239,6 +245,8 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  * @swagger
  * /transaction/transfer:
  *   post:
+ *    security: 
+ *     BearerAuth: []
  *     description: Transfer funds to another user account
  *     parameters:
  *       - in: body
@@ -272,6 +280,8 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  * @swagger
  * /transaction/get-transactions/{userId}:
  *   get:
+ *    security:
+ *     BearerAuth: []
  *     description: List transactions per user
  *     parameters:
  *       - in: path
@@ -316,26 +326,31 @@ router.post(
 router.get(
   "/cards/get-cards/:id",
   cardValidationMiddleware(getCardsValidation),
+  jwtMiddleware,
   getCards
 );
 router.delete(
   "/cards/delete-card/:id",
   cardValidationMiddleware(deleteCardValidation),
+  jwtMiddleware,
   deleteCard
 );
 router.post(
   "/transaction/deposit",
   transactionValidationMiddleware(depositValidation),
+  jwtMiddleware,
   deposit
 );
 router.post(
   "/transaction/transfer",
   transactionValidationMiddleware(transferValidation),
+  jwtMiddleware,
   transaction
 );
 router.get(
   "/transaction/get-transactions/:userId",
   transactionValidationMiddleware(getTransactionsValidation),
+  jwtMiddleware,
   getTransactions
 );
 
