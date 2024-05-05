@@ -3,6 +3,11 @@ import { DepositModel } from "../models/deposit.model.js";
 import { UserModel } from "../models/user.model.js";
 import { CardModel } from "../models/card.model.js";
 import { decryptCard } from "../utils/decryptCard.js";
+import {
+  transferValidation,
+  getTransactionsValidation,
+  depositValidation,
+} from "../middleware/transactionValidation.js";
 
 export const transactionService = async (
   senderId,
@@ -12,6 +17,17 @@ export const transactionService = async (
   cardId
 ) => {
   try {
+    const { error } = transferValidation.validate({
+      senderId,
+      receiverId,
+      amount,
+      cardNumber,
+      cardId,
+    });
+    if (error) {
+      throw new Error(error.details[0].message);
+    }
+
     const card = await CardModel.findOne({ _id: cardId });
     const user = await UserModel.findOne({ _id: senderId });
 
@@ -54,6 +70,15 @@ export const transactionService = async (
 
 export const depositService = async (cardId, amount, cardNumber) => {
   try {
+    const { error } = depositValidation.validate({
+      cardId,
+      amount,
+      cardNumber,
+    });
+    if (error) {
+      throw new Error(error.details[0].message);
+    }
+
     const card = await CardModel.findOne({ _id: cardId });
 
     if (!card) {
@@ -91,6 +116,10 @@ export const depositService = async (cardId, amount, cardNumber) => {
 
 export const getTransactionsService = async (userId) => {
   try {
+    const { error } = getTransactionsValidation.validate({ userId });
+    if (error) {
+      throw new Error(error.details[0].message);
+    }
 
     if (!userId) {
       throw new Error("User not found");

@@ -35,9 +35,9 @@ export const createCardService = async (cardData) => {
       encryptionIV: iv,
     });
 
-    await newCard.save();
+    const savedCard = await newCard.save();
 
-    return newCard;
+    return savedCard;
   } catch (error) {
     console.log(error);
     throw new Error("Database update error");
@@ -46,12 +46,12 @@ export const createCardService = async (cardData) => {
 
 export const deleteCardService = async (id) => {
   try {
-    const { error } = deleteCardValidation.validate(id);
+    const { error } = deleteCardValidation.validate({ id });
     if (error) {
       throw new Error(error.details[0].message);
     }
 
-    await CardModel.findByIdAndDelete(id).exec();
+    await CardModel.findByIdAndDelete(id);
 
     return "Card deleted";
   } catch (error) {
@@ -62,7 +62,7 @@ export const deleteCardService = async (id) => {
 
 export const getCardsService = async (id) => {
   try {
-    const { error } = getCardsValidation.validate(id);
+    const { error } = getCardsValidation.validate({ id });
     if (error) {
       throw new Error(error.details[0].message);
     }
