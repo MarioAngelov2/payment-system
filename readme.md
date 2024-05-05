@@ -128,6 +128,12 @@
       - Associated with user (via user ID)
       
 ## 4. Security
-  - Authentication (JWT implementation)
-  - Data Encryption (encryption of sensitive data)
-  - Logging (monitoring and debugging purposes)
+   ### Authentication and authorization
+   - To access the endpoints that require authentication, you need to obtain a bearer token. Follow these steps to obtain a token:
+     - **Register a User**: If you haven't already registered, send a `POST` request to `/auth/register` with your user details to create an account.
+     - **Login**: Once registered, send a `POST` request to `/auth/login` with your credentials to obtain a bearer token.
+     - **Example of received token**: `token`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlVzZXIgTmFtZSIsImlhdCI6MTYxNjIzOTAyMn0.QXRoYW5Abm93c3BhcmtldHNlcnZpY2VzLmNvbQ==`
+   
+   ### Using the Bearer Token
+   - If you decide to test with provided Swagger API endpoints, you have to make sure that you include the token in the following way in the `Authorize` input: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlVzZXIgTmFtZSIsImlhdCI6MTYxNjIzOTAyMn0.QXRoYW5Abm93c3BhcmtldHNlcnZpY2VzLmNvbQ==` you can replace the example with your own generated token.
+   - When testing with Postman you **YOU DO NOT INCLUDE THE WORD BEARER INFRONT OF THE TOKEN** it is automatically added by Postman durring the process. 
