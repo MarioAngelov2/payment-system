@@ -35,6 +35,12 @@ export const transactionService = async (
       throw new Error("Card not found.");
     }
 
+    const cardExpDate = new Date(card.expirationDate);
+
+    if (cardExpDate < new Date()) {
+      throw new Error("Card expired");
+    }
+
     const isValidCard = await decryptCard(card.encryptionIV, card.cardNumber);
 
     if (isValidCard !== cardNumber) {
@@ -80,6 +86,12 @@ export const depositService = async (cardId, amount, cardNumber) => {
     }
 
     const card = await CardModel.findOne({ _id: cardId });
+
+    const cardExpDate = new Date(card.expirationDate);
+
+    if (cardExpDate < new Date()) {
+      throw new Error("Card expired");
+    }
 
     if (!card) {
       throw new Error("Card not found.");

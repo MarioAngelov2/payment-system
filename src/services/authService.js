@@ -1,8 +1,12 @@
 import { UserModel } from "../models/user.model.js";
-import { registerValidation, loginValidation } from "../middleware/authValidation.js";
+import {
+  registerValidation,
+  loginValidation,
+} from "../middleware/authValidation.js";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
+import { parse } from "date-fns";
 
 dotenv.config();
 
@@ -21,6 +25,13 @@ export const registerService = async (data) => {
       balance,
     } = data;
 
+    const dateFormat = "dd.MM.yyyy";
+    const parsedDate = parse(birthDate, dateFormat, new Date());
+
+    if (parsedDate.toString() === "Invalid Date") {
+      throw new Error("Invalid date format");
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const { error } = registerValidation.validate(data);
@@ -35,7 +46,7 @@ export const registerService = async (data) => {
       password: hashedPassword,
       address,
       phoneNumber,
-      birthDate,
+      birthDate: parsedDate,
       balance,
     });
 
@@ -47,7 +58,6 @@ export const registerService = async (data) => {
     throw new Error("Database update error");
   }
 };
-
 
 export const loginService = async (data) => {
   try {

@@ -5,6 +5,7 @@ import {
   deleteCardValidation,
   getCardsValidation,
 } from "../middleware/cardValidation.js";
+import { parse } from "date-fns";
 
 export const createCardService = async (cardData) => {
   try {
@@ -13,6 +14,17 @@ export const createCardService = async (cardData) => {
     const { error } = createCardValidation.validate(cardData);
     if (error) {
       throw new Error(error.details[0].message);
+    }
+
+    const dateFormat = "MM/yy";
+    const parsedDate = parse(expirationDate, dateFormat, new Date());
+
+    if (parsedDate.toString() === "Invalid Date") {
+      throw new Error("Invalid date format");
+    }
+
+    if (parsedDate < new Date()) {
+      throw new Error("Card expired");
     }
 
     if (cardNumber.length !== 9) {
@@ -30,7 +42,7 @@ export const createCardService = async (cardData) => {
     const newCard = new CardModel({
       cardNumber: encryptedData,
       cardHolder,
-      expirationDate,
+      expirationDate: parsedDate,
       userId,
       encryptionIV: iv,
     });
