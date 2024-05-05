@@ -38,7 +38,7 @@
 ### 3.1 API Documentation
   1. **Swagger Documentation**
       - Description
-         - The API documentation for this system is available through Swagger.
+         - The API documentation for this system is available through Swagger. For detailed explanation over the authorization, navigate to `Security` section down bellow.
       - Access
          - Copy GitHub repo, open `src` folder in terminal, write `npm start`, access the documentation on the following URL `http://localhost:5006/api-docs/`
       - Functionality
@@ -47,7 +47,7 @@
 ### 3.2 Software Components
   1. **Authentication Service**
    - Description
-      - This service is responsible for handling user authentication.
+      - This service is responsible for handling user authentication. For detailed explanation over the authorization, navigate to `Security` section down bellow.
    - Endpoints/APIs
       - `/auth/register (POST)`: Creates a new user account.
       - `/auth/login (POST)`: Authenticates a user and generates a JWT token.
