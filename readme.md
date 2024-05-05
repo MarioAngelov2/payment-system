@@ -16,10 +16,9 @@
       - `src/test/`: Contains test files.
 
    - Components Overview
-      - `register`, `login` - Responsible for user authentication.
-      - `createCard`, `getCards`, `deleteCard` - Handles credit card managment. 
-      - `deposit` - Manages financial deposit into user's account.
-      - `transaction`, `getTransactions` - Manages transactions between user's accounts and retreives all transactions per user.
+      - `authController`, `authService` - Responsible for user authentication/authorization.
+      - `cardsController`, `cardsService` - Handles credit card managment. 
+      - `transactionsController`, `transactionsService` - Manages financial deposit/transfer into user's account.
   
 - Technologies used (Node.js, npm packages, database)
    - `Node.js`: The runtime environment for executing JavaScript code server-side.
