@@ -16,7 +16,7 @@ export const getCardsValidation = Joi.object({
 });
 
 export const cardValidationMiddleware = (schema) => (req, res, next) => {
-  if (schema === getCardsValidation && req.body) {
+  if (schema === createCardValidation && req.body) {
     const { error } = schema.validate(req.body);
     if (error) {
       return res.status(400).json({ error: error.details[0].message });

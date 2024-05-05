@@ -19,14 +19,14 @@ export const getTransactionsValidation = Joi.object({
 });
 
 export const transactionValidationMiddleware = (schema) => (req, res, next) => {
-  if (req.body) {
+  if (schema === depositValidation || schema === transferValidation) {
     const { error } = schema.validate(req.body);
     if (error) {
       return res.status(400).json({ error: error.details[0].message });
     }
   }
 
-  if (req.params) {
+  if (schema === getTransactionsValidation) {
     const { error } = schema.validate(req.params);
     if (error) {
       return res.status(400).json({ error: error.details[0].message });

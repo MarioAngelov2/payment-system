@@ -195,8 +195,8 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  * @swagger
  * /cards/delete-card/{id}:
  *   delete:
- *    security:
- *     BearerAuth: []
+ *     security:
+ *      - BearerAuth: []
  *     description: Deletes a card
  *     parameters:
  *       - in: path
@@ -214,8 +214,8 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  * @swagger
  * /transaction/deposit:
  *   post:
- *    security:
- *     BearerAuth: []
+ *     security:
+ *      - BearerAuth: []
  *     description: Deposit funds to user account
  *     parameters:
  *       - in: body
@@ -245,8 +245,8 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  * @swagger
  * /transaction/transfer:
  *   post:
- *    security: 
- *     BearerAuth: []
+ *     security: 
+ *      - BearerAuth: []
  *     description: Transfer funds to another user account
  *     parameters:
  *       - in: body
@@ -268,7 +268,7 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  *               type: string
  *     responses:
  *       201:
- *         description: Depoist successful
+ *         description: Transaction successful
  *         schema:
  *           type: object
  *           properties:
@@ -280,8 +280,8 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  * @swagger
  * /transaction/get-transactions/{userId}:
  *   get:
- *    security:
- *     BearerAuth: []
+ *     security:
+ *      - BearerAuth: []
  *     description: List transactions per user
  *     parameters:
  *       - in: path
