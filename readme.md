@@ -142,3 +142,4 @@
 ## User auth flow diagram
 
    <img src="./screenshots/user-auth-flow.png" />
+   <img src="./screenshots//payment-diagram.png"/>
