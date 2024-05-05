@@ -79,7 +79,7 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  *             address:
  *               type: string
  *             phoneNumber:
- *               type: number
+ *               type: string
  *             birthDate:
  *               type: string
  *             balance:
@@ -319,8 +319,8 @@ router.post(
 router.post("/auth/login", authValidationMiddleware(loginValidation), login);
 router.post(
   "/cards/create-card",
-  cardValidationMiddleware(createCardValidation),
   jwtMiddleware,
+  cardValidationMiddleware(createCardValidation),
   createCard
 );
 router.get(
