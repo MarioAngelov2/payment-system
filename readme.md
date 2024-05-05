@@ -141,5 +141,8 @@
 
 ## User auth flow diagram
 
-   <img src="./screenshots/user-auth-flow.png" />
-   <img src="./screenshots//payment-diagram.png"/>
+   <img src="./screenshots/user-auth.drawio.png" />
+
+## Deposit/Transaction flow
+
+   <img src="./screenshots/payment-diagram.drawio.png"/>
