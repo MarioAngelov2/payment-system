@@ -16,6 +16,10 @@ export const createCardService = async (cardData) => {
       throw new Error(error.details[0].message);
     }
 
+    if (!/^\d+$/.test(cardNumber)) {
+      throw new Error("Card number should contain only digits");
+    }
+
     const dateFormat = "MM/yy";
     const parsedDate = parse(expirationDate, dateFormat, new Date());
 
